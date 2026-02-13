@@ -86,6 +86,9 @@ LIMIT 5
 
 **Output:**
 
+![SQL Output](images/q4a.png)
+![SQL Output](images/q4b.png)
+
 ### What is the average shipping time by ship mode?
 
 ```sql
@@ -95,6 +98,8 @@ GROUP BY ship_mode
 ```
 
 **Output:**
+
+![SQL Output](images/q5.png)
 
 ### Which orders shipped later than average with respect to the ship mode?
 
@@ -110,6 +115,8 @@ WHERE ship_time > avg_ship_time
 ```
 
 **Output:**
+
+![SQL Output](images/q6.png)
 
 ### How do sales fluctuate monthly accross different regions?
 
@@ -155,6 +162,8 @@ FROM customer_counts
 
 **Output:**
 
+![SQL Output](images/q8.png)
+
 ### Which customers have shown a consistent increase in spending over time?
 
 ```sql
@@ -185,6 +194,8 @@ WHERE has_increased_spending
 
 **Output:**
 
+![SQL Output](images/q9.png)
+
 ### Within each category, what are the top 3 best-selling products by revenue?
 
 ```sql
@@ -208,3 +219,5 @@ WHERE product_rank <= 3
 ```
 
 **Output:**
+
+![SQL Output](images/q10.png)
