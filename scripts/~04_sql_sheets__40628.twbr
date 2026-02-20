@@ -1,0 +1,2062 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20253.26.0109.0333                               -->
+<workbook original-version='18.1' source-build='2025.3.2 (20253.26.0109.0333)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <Extensions />
+    <_.fcp.IndividualControlFormatting.true...IndividualControlFormatting />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <PatternedLineMarks />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SingleValuePerNestSorting />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <_.fcp.VizExtensions.true...VizExtensions />
+    <_.fcp.VizExtensionsDupEncodingUUID.true...VizExtensionsDupEncodingUUID />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneFriendlyName />
+  </document-format-change-manifest>
+  <repository-location id='SalesModelingProject' path='/workbooks' revision='1.2' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Tot Sales' inline='true' name='federated.1ryau9m1fx6v0r10ixmr40yib9t8' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.0od9oi908v7yvt1et0lr50s9rg7c'>
+            <connection authentication='username-password' class='postgres' dbname='sales_db' one-time-sql='' port='5432' server='localhost' username='postgres' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation type='collection'>
+          <relation connection='postgres.0od9oi908v7yvt1et0lr50s9rg7c' name='Custom SQL Query1' type='text'>SELECT SUM(sales) FROM order_items</relation>
+          <relation connection='postgres.0od9oi908v7yvt1et0lr50s9rg7c' name='Custom SQL Query' type='text'>SELECT &#13;
+	p.category, &#13;
+	SUM(oi.sales) AS tot_cat_sales,&#13;
+	SUM(oi.sales) / SUM(SUM(oi.sales)) OVER () AS percent&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.category</relation>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>sum</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[sum]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>sum</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_14BC2B96247C415D97DA61F45E2BE6D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_217B87C2348143C0851DF4AD64866665]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tot_cat_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[tot_cat_sales]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>tot_cat_sales</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_217B87C2348143C0851DF4AD64866665]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>percent</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[percent]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>percent</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_217B87C2348143C0851DF4AD64866665]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Q1' datatype='table' name='[__tableau_internal_object_id__].[_14BC2B96247C415D97DA61F45E2BE6D0]' role='measure' type='quantitative' />
+      <column caption='Q2' datatype='table' name='[__tableau_internal_object_id__].[_217B87C2348143C0851DF4AD64866665]' role='measure' type='quantitative' />
+      <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+      <column caption='Percentage' datatype='real' name='[percent]' role='measure' type='quantitative' />
+      <column caption='Total Category Sales' datatype='real' name='[tot_cat_sales]' role='measure' type='quantitative' />
+      <column-instance column='[category]' derivation='None' name='[none:category:nk]' pivot='key' type='nominal' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='Data/Book1.twb Files/federated 2.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <relation type='collection'>
+            <relation name='_14BC2B96247C415D97DA61F45E2BE6D0' table='[Extract].[_14BC2B96247C415D97DA61F45E2BE6D0]' type='table' />
+            <relation name='_217B87C2348143C0851DF4AD64866665' table='[Extract].[_217B87C2348143C0851DF4AD64866665]' type='table' />
+          </relation>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>sum</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[sum]</local-name>
+              <parent-name>[_14BC2B96247C415D97DA61F45E2BE6D0]</parent-name>
+              <remote-alias>sum</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>category</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[category]</local-name>
+              <parent-name>[_217B87C2348143C0851DF4AD64866665]</parent-name>
+              <remote-alias>category</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>tot_cat_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[tot_cat_sales]</local-name>
+              <parent-name>[_217B87C2348143C0851DF4AD64866665]</parent-name>
+              <remote-alias>tot_cat_sales</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>percent</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[percent]</local-name>
+              <parent-name>[_217B87C2348143C0851DF4AD64866665]</parent-name>
+              <remote-alias>percent</remote-alias>
+              <ordinal>3</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:category:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Furniture&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Technology&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Office Supplies&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='Q1' id='_14BC2B96247C415D97DA61F45E2BE6D0'>
+            <properties context=''>
+              <relation connection='postgres.0od9oi908v7yvt1et0lr50s9rg7c' name='Custom SQL Query1' type='text'>SELECT SUM(sales) FROM order_items</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='_14BC2B96247C415D97DA61F45E2BE6D0' table='[Extract].[_14BC2B96247C415D97DA61F45E2BE6D0]' type='table' />
+            </properties>
+          </object>
+          <object caption='Q2' id='_217B87C2348143C0851DF4AD64866665'>
+            <properties context=''>
+              <relation connection='postgres.0od9oi908v7yvt1et0lr50s9rg7c' name='Custom SQL Query' type='text'>SELECT &#13;
+	p.category, &#13;
+	SUM(oi.sales) AS tot_cat_sales,&#13;
+	SUM(oi.sales) / SUM(SUM(oi.sales)) OVER () AS percent&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.category</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='_217B87C2348143C0851DF4AD64866665' table='[Extract].[_217B87C2348143C0851DF4AD64866665]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[sum]' />
+              <expression op='[tot_cat_sales]' />
+            </expression>
+            <first-end-point object-id='_14BC2B96247C415D97DA61F45E2BE6D0' />
+            <second-end-point object-id='_217B87C2348143C0851DF4AD64866665' />
+          </relationship>
+        </relationships>
+      </object-graph>
+    </datasource>
+    <datasource caption='Top Customers' inline='true' name='federated.0osjgbk1y186if10e1qtx1i5izr7' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.0c7hvlv08vx7el1642d6y13qcwqx'>
+            <connection authentication='username-password' class='postgres' dbname='sales_db' one-time-sql='' port='5432' server='localhost' username='postgres' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.0c7hvlv08vx7el1642d6y13qcwqx' name='Custom SQL Query' type='text'>SELECT o.customer_id, c.customer_name, SUM(oi.sales) AS customer_sales&#13;
+FROM order_items oi&#13;
+JOIN orders o ON o.order_id = oi.order_id&#13;
+JOIN customers c ON c.customer_id = o.customer_id&#13;
+GROUP BY o.customer_id, c.customer_name&#13;
+ORDER BY customer_sales DESC&#13;
+LIMIT 10</relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>customer_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_id]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>customer_id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_E2DE81191BE9463CBEBED7D05015E939]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[customer_name]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>customer_name</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_E2DE81191BE9463CBEBED7D05015E939]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customer_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[customer_sales]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>customer_sales</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_E2DE81191BE9463CBEBED7D05015E939]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Q3' datatype='table' name='[__tableau_internal_object_id__].[_E2DE81191BE9463CBEBED7D05015E939]' role='measure' type='quantitative' />
+      <column caption='Customer Name' datatype='string' name='[customer_name]' role='dimension' type='nominal' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='Data/Book1.twb Files/federated 1.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>customer_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>customer_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[customer_name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>customer_name</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>customer_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[customer_sales]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>customer_sales</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='Q3' id='_E2DE81191BE9463CBEBED7D05015E939'>
+            <properties context=''>
+              <relation connection='postgres.0c7hvlv08vx7el1642d6y13qcwqx' name='Custom SQL Query' type='text'>SELECT o.customer_id, c.customer_name, SUM(oi.sales) AS customer_sales&#13;
+FROM order_items oi&#13;
+JOIN orders o ON o.order_id = oi.order_id&#13;
+JOIN customers c ON c.customer_id = o.customer_id&#13;
+GROUP BY o.customer_id, c.customer_name&#13;
+ORDER BY customer_sales DESC&#13;
+LIMIT 10</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='Monthly Sales' inline='true' name='federated.0a5oze51c5iscp18t88kp15tqdt3' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.1woy5xl1s8tu7715w4bw61ftk8xn'>
+            <connection authentication='username-password' class='postgres' dbname='sales_db' one-time-sql='' port='5432' server='localhost' username='postgres' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.1woy5xl1s8tu7715w4bw61ftk8xn' name='Custom SQL Query' type='text'>WITH monthly_summary AS (&#13;
+	SELECT &#13;
+		region,&#13;
+		MAKE_DATE(&#13;
+            CAST(EXTRACT(YEAR FROM order_date) AS INT), &#13;
+            CAST(EXTRACT(MONTH FROM order_date) AS INT), &#13;
+            1&#13;
+        ) AS sales_month_date,&#13;
+		SUM(sales) AS tot_month_sales&#13;
+	FROM order_items oi&#13;
+	JOIN orders o ON o.order_id = oi.order_id&#13;
+	GROUP BY region, sales_month_date&#13;
+)&#13;
+SELECT&#13;
+	*, &#13;
+	tot_month_sales - LAG(tot_month_sales) OVER (&#13;
+		PARTITION BY region &#13;
+		ORDER BY sales_month_date&#13;
+	) AS monthly_change_in_sales&#13;
+FROM monthly_summary&#13;
+ORDER BY sales_month_date, region</relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>region</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[region]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>region</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_0D1589053CD14739A95EFFE588446CB4]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sales_month_date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[sales_month_date]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>sales_month_date</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[_0D1589053CD14739A95EFFE588446CB4]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tot_month_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[tot_month_sales]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>tot_month_sales</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_0D1589053CD14739A95EFFE588446CB4]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>monthly_change_in_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[monthly_change_in_sales]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>monthly_change_in_sales</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_0D1589053CD14739A95EFFE588446CB4]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Q7' datatype='table' name='[__tableau_internal_object_id__].[_0D1589053CD14739A95EFFE588446CB4]' role='measure' type='quantitative' />
+      <column caption='Monthly Change in Sales ($)' datatype='real' name='[monthly_change_in_sales]' role='measure' type='quantitative' />
+      <column caption='Region' datatype='string' name='[region]' role='dimension' type='nominal' />
+      <column caption='Sales Month' datatype='date' name='[sales_month_date]' role='dimension' type='ordinal' />
+      <column caption='Total Sales in Month ($)' datatype='real' name='[tot_month_sales]' role='measure' type='quantitative' />
+      <column-instance column='[Forecast Indicator]' derivation='None' forecast-column-base='[Forecast Indicator]' forecast-column-type='forecast-indicator' name='[none:Forecast Indicator:nk]' pivot='key' type='nominal' />
+      <column-instance column='[monthly_change_in_sales]' derivation='Sum' name='[sum:monthly_change_in_sales:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[tot_month_sales]' derivation='Sum' name='[sum:tot_month_sales:qk]' pivot='key' type='quantitative' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='Data/Book1.twb Files/federated.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>region</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[region]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>region</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>sales_month_date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[sales_month_date]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>sales_month_date</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>48</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>tot_month_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[tot_month_sales]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>tot_month_sales</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>192</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>monthly_change_in_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[monthly_change_in_sales]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>monthly_change_in_sales</remote-alias>
+              <ordinal>3</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>189</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <default-sorts>
+        <manual-sort column='[none:Forecast Indicator:nk]' direction='ASC'>
+          <dictionary>
+            <bucket>&quot;Actual&quot;</bucket>
+            <bucket>&quot;Estimate&quot;</bucket>
+          </dictionary>
+        </manual-sort>
+      </default-sorts>
+      <object-graph>
+        <objects>
+          <object caption='Q7' id='_0D1589053CD14739A95EFFE588446CB4'>
+            <properties context=''>
+              <relation connection='postgres.1woy5xl1s8tu7715w4bw61ftk8xn' name='Custom SQL Query' type='text'>WITH monthly_summary AS (&#13;
+	SELECT &#13;
+		region,&#13;
+		MAKE_DATE(&#13;
+            CAST(EXTRACT(YEAR FROM order_date) AS INT), &#13;
+            CAST(EXTRACT(MONTH FROM order_date) AS INT), &#13;
+            1&#13;
+        ) AS sales_month_date,&#13;
+		SUM(sales) AS tot_month_sales&#13;
+	FROM order_items oi&#13;
+	JOIN orders o ON o.order_id = oi.order_id&#13;
+	GROUP BY region, sales_month_date&#13;
+)&#13;
+SELECT&#13;
+	*, &#13;
+	tot_month_sales - LAG(tot_month_sales) OVER (&#13;
+		PARTITION BY region &#13;
+		ORDER BY sales_month_date&#13;
+	) AS monthly_change_in_sales&#13;
+FROM monthly_summary&#13;
+ORDER BY sales_month_date, region</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='Top Product' inline='true' name='federated.1mi8jbz12p34al1811hg10a9o26x' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.0lda1250mb5z1x1an5kbq0rubz05'>
+            <connection authentication='username-password' class='postgres' dbname='sales_db' one-time-sql='' port='5432' server='localhost' username='postgres' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation type='collection'>
+          <relation connection='postgres.0lda1250mb5z1x1an5kbq0rubz05' name='Custom SQL Query' type='text'>SELECT p.product_key, p.product_id, p.product_name, &#13;
+	SUM(oi.sales) AS product_sales, &#13;
+	COUNT(oi.order_id) AS num_units_sold&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.product_key&#13;
+ORDER BY product_sales DESC, num_units_sold DESC&#13;
+LIMIT 5</relation>
+          <relation connection='postgres.0lda1250mb5z1x1an5kbq0rubz05' name='Custom SQL Query1' type='text'>SELECT p.product_key, p.product_id, p.product_name, &#13;
+	SUM(oi.sales) AS product_sales, &#13;
+	COUNT(oi.order_id) AS num_units_sold&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.product_key&#13;
+ORDER BY num_units_sold DESC, product_sales DESC&#13;
+LIMIT 5</relation>
+        </relation>
+        <cols>
+          <map key='[num_units_sold (Custom SQL Query1)]' value='[Custom SQL Query1].[num_units_sold]' />
+          <map key='[num_units_sold]' value='[Custom SQL Query].[num_units_sold]' />
+          <map key='[product_id (Custom SQL Query1)]' value='[Custom SQL Query1].[product_id]' />
+          <map key='[product_id]' value='[Custom SQL Query].[product_id]' />
+          <map key='[product_key (Custom SQL Query1)]' value='[Custom SQL Query1].[product_key]' />
+          <map key='[product_key]' value='[Custom SQL Query].[product_key]' />
+          <map key='[product_name (Custom SQL Query1)]' value='[Custom SQL Query1].[product_name]' />
+          <map key='[product_name]' value='[Custom SQL Query].[product_name]' />
+          <map key='[product_sales (Custom SQL Query1)]' value='[Custom SQL Query1].[product_sales]' />
+          <map key='[product_sales]' value='[Custom SQL Query].[product_sales]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>product_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[product_key]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>product_key</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_DC39EC5C8BA041ACB66239D74E761CEC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_id]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>product_id</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_DC39EC5C8BA041ACB66239D74E761CEC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_name]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>product_name</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_DC39EC5C8BA041ACB66239D74E761CEC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[product_sales]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>product_sales</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_DC39EC5C8BA041ACB66239D74E761CEC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>num_units_sold</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[num_units_sold]</local-name>
+            <parent-name>[Custom SQL Query]</parent-name>
+            <remote-alias>num_units_sold</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_DC39EC5C8BA041ACB66239D74E761CEC]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_key</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[product_key (Custom SQL Query1)]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>product_key</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_8ED1E8287D554C3F8630EE0D51A4D493]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_id (Custom SQL Query1)]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>product_id</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_8ED1E8287D554C3F8630EE0D51A4D493]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[product_name (Custom SQL Query1)]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>product_name</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[_8ED1E8287D554C3F8630EE0D51A4D493]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>product_sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[product_sales (Custom SQL Query1)]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>product_sales</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_8ED1E8287D554C3F8630EE0D51A4D493]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>num_units_sold</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[num_units_sold (Custom SQL Query1)]</local-name>
+            <parent-name>[Custom SQL Query1]</parent-name>
+            <remote-alias>num_units_sold</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[_8ED1E8287D554C3F8630EE0D51A4D493]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='by_unit' datatype='table' name='[__tableau_internal_object_id__].[_8ED1E8287D554C3F8630EE0D51A4D493]' role='measure' type='quantitative' />
+      <column caption='by_sales' datatype='table' name='[__tableau_internal_object_id__].[_DC39EC5C8BA041ACB66239D74E761CEC]' role='measure' type='quantitative' />
+      <column caption='Num Units Sold_' datatype='integer' name='[num_units_sold (Custom SQL Query1)]' role='measure' type='quantitative' />
+      <column caption='Num Units Sold' datatype='integer' name='[num_units_sold]' role='measure' type='quantitative' />
+      <column caption='Product Name_' datatype='string' name='[product_name (Custom SQL Query1)]' role='dimension' type='nominal' />
+      <column caption='Product Name' datatype='string' name='[product_name]' role='dimension' type='nominal' />
+      <column caption='Product Sales ($)_' datatype='real' name='[product_sales (Custom SQL Query1)]' role='measure' type='quantitative' />
+      <column caption='Product Sales ($)' datatype='real' name='[product_sales]' role='measure' type='quantitative' />
+      <column-instance column='[num_units_sold (Custom SQL Query1)]' derivation='Sum' name='[sum:num_units_sold (Custom SQL Query1):qk]' pivot='key' type='quantitative' />
+      <column-instance column='[num_units_sold]' derivation='Sum' name='[sum:num_units_sold:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[product_sales (Custom SQL Query1)]' derivation='Sum' name='[sum:product_sales (Custom SQL Query1):qk]' pivot='key' type='quantitative' />
+      <column-instance column='[product_sales]' derivation='Sum' name='[sum:product_sales:qk]' pivot='key' type='quantitative' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='Data/04_sql_sheets.twb Files/federated.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
+          <relation type='collection'>
+            <relation name='_DC39EC5C8BA041ACB66239D74E761CEC' table='[Extract].[_DC39EC5C8BA041ACB66239D74E761CEC]' type='table' />
+            <relation name='_8ED1E8287D554C3F8630EE0D51A4D493' table='[Extract].[_8ED1E8287D554C3F8630EE0D51A4D493]' type='table' />
+          </relation>
+          <cols>
+            <map key='[num_units_sold (Custom SQL Query1)]' value='[_8ED1E8287D554C3F8630EE0D51A4D493].[num_units_sold]' />
+            <map key='[num_units_sold]' value='[_DC39EC5C8BA041ACB66239D74E761CEC].[num_units_sold]' />
+            <map key='[product_id (Custom SQL Query1)]' value='[_8ED1E8287D554C3F8630EE0D51A4D493].[product_id]' />
+            <map key='[product_id]' value='[_DC39EC5C8BA041ACB66239D74E761CEC].[product_id]' />
+            <map key='[product_key (Custom SQL Query1)]' value='[_8ED1E8287D554C3F8630EE0D51A4D493].[product_key]' />
+            <map key='[product_key]' value='[_DC39EC5C8BA041ACB66239D74E761CEC].[product_key]' />
+            <map key='[product_name (Custom SQL Query1)]' value='[_8ED1E8287D554C3F8630EE0D51A4D493].[product_name]' />
+            <map key='[product_name]' value='[_DC39EC5C8BA041ACB66239D74E761CEC].[product_name]' />
+            <map key='[product_sales (Custom SQL Query1)]' value='[_8ED1E8287D554C3F8630EE0D51A4D493].[product_sales]' />
+            <map key='[product_sales]' value='[_DC39EC5C8BA041ACB66239D74E761CEC].[product_sales]' />
+          </cols>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>product_key</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_key]</local-name>
+              <parent-name>[_DC39EC5C8BA041ACB66239D74E761CEC]</parent-name>
+              <remote-alias>product_key</remote-alias>
+              <ordinal>0</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_id]</local-name>
+              <parent-name>[_DC39EC5C8BA041ACB66239D74E761CEC]</parent-name>
+              <remote-alias>product_id</remote-alias>
+              <ordinal>1</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_name]</local-name>
+              <parent-name>[_DC39EC5C8BA041ACB66239D74E761CEC]</parent-name>
+              <remote-alias>product_name</remote-alias>
+              <ordinal>2</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[product_sales]</local-name>
+              <parent-name>[_DC39EC5C8BA041ACB66239D74E761CEC]</parent-name>
+              <remote-alias>product_sales</remote-alias>
+              <ordinal>3</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>num_units_sold</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[num_units_sold]</local-name>
+              <parent-name>[_DC39EC5C8BA041ACB66239D74E761CEC]</parent-name>
+              <remote-alias>num_units_sold</remote-alias>
+              <ordinal>4</ordinal>
+              <family>Custom SQL Query</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_key</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[product_key (Custom SQL Query1)]</local-name>
+              <parent-name>[_8ED1E8287D554C3F8630EE0D51A4D493]</parent-name>
+              <remote-alias>product_key</remote-alias>
+              <ordinal>5</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_id (Custom SQL Query1)]</local-name>
+              <parent-name>[_8ED1E8287D554C3F8630EE0D51A4D493]</parent-name>
+              <remote-alias>product_id</remote-alias>
+              <ordinal>6</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[product_name (Custom SQL Query1)]</local-name>
+              <parent-name>[_8ED1E8287D554C3F8630EE0D51A4D493]</parent-name>
+              <remote-alias>product_name</remote-alias>
+              <ordinal>7</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>product_sales</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[product_sales (Custom SQL Query1)]</local-name>
+              <parent-name>[_8ED1E8287D554C3F8630EE0D51A4D493]</parent-name>
+              <remote-alias>product_sales</remote-alias>
+              <ordinal>8</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>num_units_sold</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[num_units_sold (Custom SQL Query1)]</local-name>
+              <parent-name>[_8ED1E8287D554C3F8630EE0D51A4D493]</parent-name>
+              <remote-alias>num_units_sold</remote-alias>
+              <ordinal>9</ordinal>
+              <family>Custom SQL Query1</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.1mi8jbz12p34al1811hg10a9o26x]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales (Custom SQL Query1):qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='by_unit' id='_8ED1E8287D554C3F8630EE0D51A4D493'>
+            <properties context=''>
+              <relation connection='postgres.0lda1250mb5z1x1an5kbq0rubz05' name='Custom SQL Query1' type='text'>SELECT p.product_key, p.product_id, p.product_name, &#13;
+	SUM(oi.sales) AS product_sales, &#13;
+	COUNT(oi.order_id) AS num_units_sold&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.product_key&#13;
+ORDER BY num_units_sold DESC, product_sales DESC&#13;
+LIMIT 5</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='_8ED1E8287D554C3F8630EE0D51A4D493' table='[Extract].[_8ED1E8287D554C3F8630EE0D51A4D493]' type='table' />
+            </properties>
+          </object>
+          <object caption='by_sales' id='_DC39EC5C8BA041ACB66239D74E761CEC'>
+            <properties context=''>
+              <relation connection='postgres.0lda1250mb5z1x1an5kbq0rubz05' name='Custom SQL Query' type='text'>SELECT p.product_key, p.product_id, p.product_name, &#13;
+	SUM(oi.sales) AS product_sales, &#13;
+	COUNT(oi.order_id) AS num_units_sold&#13;
+FROM order_items oi&#13;
+JOIN products p ON p.product_key = oi.product_key&#13;
+GROUP BY p.product_key&#13;
+ORDER BY product_sales DESC, num_units_sold DESC&#13;
+LIMIT 5</relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='_DC39EC5C8BA041ACB66239D74E761CEC' table='[Extract].[_DC39EC5C8BA041ACB66239D74E761CEC]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[product_key]' />
+              <expression op='[product_key (Custom SQL Query1)]' />
+            </expression>
+            <first-end-point object-id='_DC39EC5C8BA041ACB66239D74E761CEC' />
+            <second-end-point object-id='_8ED1E8287D554C3F8630EE0D51A4D493' />
+          </relationship>
+        </relationships>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='month_sales'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1' fontname='Eras Bold ITC' fontsize='12'>Monthly Sales by US Region</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Monthly Sales' name='federated.0a5oze51c5iscp18t88kp15tqdt3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0a5oze51c5iscp18t88kp15tqdt3'>
+            <column caption='Monthly Change in Sales ($)' datatype='real' name='[monthly_change_in_sales]' role='measure' type='quantitative' />
+            <column-instance column='[region]' derivation='None' name='[none:region:nk]' pivot='key' type='nominal' />
+            <column caption='Region' datatype='string' name='[region]' role='dimension' type='nominal' />
+            <column caption='Sales Month' datatype='date' name='[sales_month_date]' role='dimension' type='ordinal' />
+            <column-instance column='[monthly_change_in_sales]' derivation='Sum' name='[sum:monthly_change_in_sales:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[tot_month_sales]' derivation='Sum' name='[sum:tot_month_sales:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[sales_month_date]' derivation='Month-Trunc' name='[tmn:sales_month_date:qk]' pivot='key' type='quantitative' />
+            <column caption='Total Sales in Month ($)' datatype='real' name='[tot_month_sales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <single-value-per-nest-shelf-sorts>
+            <single-value-per-nest-shelf-sort dimension-to-sort='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' direction='ASC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' shelf='rows' />
+          </single-value-per-nest-shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[tmn:sales_month_date:qk]' scope='cols' value='Time in Months' />
+            <format attr='title' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' scope='rows' value='Monthly Sales' />
+            <encoding attr='space' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='title' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]' scope='rows' value='' />
+            <format attr='display' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' scope='rows' value='false' />
+            <format attr='auto-subtitle' class='0' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]' scope='rows' value='true' />
+            <format attr='width' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]' value='40' />
+            <format attr='width' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' value='40' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width-header' value='28' />
+            <format attr='background-color' value='#e6e6e6' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='font-weight' value='normal' />
+            <format attr='font-family' value='Eras Demi ITC' />
+            <format attr='font-size' value='11' />
+          </style-rule>
+          <style-rule element='field-labels-decoration'>
+            <format attr='font-style' value='normal' />
+            <format attr='text-orientation' value='-90' />
+          </style-rule>
+          <style-rule element='field-labels-spanner'>
+            <format attr='font-weight' scope='rows' value='normal' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='font-size' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' value='10' />
+            <format attr='text-orientation' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' value='-90' />
+            <format attr='font-family' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' value='Eras Demi ITC' />
+            <format attr='font-weight' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk]' value='normal' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#9e3d22</color>
+                <color>#a3482e</color>
+                <color>#a8533c</color>
+                <color>#ae604a</color>
+                <color>#b36d59</color>
+                <color>#b87a69</color>
+                <color>#be897a</color>
+                <color>#c3978b</color>
+                <color>#c8a79d</color>
+                <color>#ceb7b0</color>
+                <color>#d3c7c4</color>
+                <color>#d9d9d9</color>
+                <color>#d1d8d0</color>
+                <color>#cad7c7</color>
+                <color>#c3d6bf</color>
+                <color>#bcd6b6</color>
+                <color>#b5d5ae</color>
+                <color>#aed4a6</color>
+                <color>#a7d39d</color>
+                <color>#a0d395</color>
+                <color>#99d28d</color>
+                <color>#92d185</color>
+                <color>#8cd17d</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='show-null-value-warning' value='false' />
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-color' id='refline0' value='#000000' />
+          </style-rule>
+          <style-rule element='axis-title'>
+            <format attr='font-size' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[tmn:sales_month_date:qk]' value='11' />
+            <format attr='font-weight' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]' value='normal' />
+            <format attr='font-size' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]' value='10' />
+            <format attr='font-size' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' value='10' />
+            <format attr='font-weight' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[tmn:sales_month_date:qk]' value='normal' />
+            <format attr='font-family' field='[federated.0a5oze51c5iscp18t88kp15tqdt3].[tmn:sales_month_date:qk]' value='Eras Demi ITC' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='line-interpolation' value='linear' />
+                <format attr='mark-line-pattern' value='solid' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.53773480653762817' />
+                <format attr='line-interpolation' value='linear' />
+                <format attr='mark-line-pattern' value='solid' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0a5oze51c5iscp18t88kp15tqdt3].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.58171272277832031' />
+                <format attr='line-interpolation' value='linear' />
+                <format attr='mark-line-pattern' value='solid' />
+                <format attr='mark-markers-mode' value='auto' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0a5oze51c5iscp18t88kp15tqdt3].[none:region:nk] * ([federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:tot_month_sales:qk] + [federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]))</rows>
+        <cols>[federated.0a5oze51c5iscp18t88kp15tqdt3].[tmn:sales_month_date:qk]</cols>
+      </table>
+      <simple-id uuid='{7DC5B18B-7B2B-44A3-9533-CB80766CA198}' />
+    </worksheet>
+    <worksheet name='top_cust'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1'>Top 20 Customers by Sales Revenue</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Top Customers' name='federated.0osjgbk1y186if10e1qtx1i5izr7' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0osjgbk1y186if10e1qtx1i5izr7'>
+            <column datatype='string' name='[customer_id]' role='dimension' type='nominal' />
+            <column caption='Customer Name' datatype='string' name='[customer_name]' role='dimension' type='nominal' />
+            <column datatype='real' name='[customer_sales]' role='measure' type='quantitative' />
+            <column-instance column='[customer_id]' derivation='None' name='[none:customer_id:nk]' pivot='key' type='nominal' />
+            <column-instance column='[customer_name]' derivation='None' name='[none:customer_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[customer_sales]' derivation='Sum' name='[sum:customer_sales:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <computed-sort column='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_name:nk]' direction='DESC' using='[federated.0osjgbk1y186if10e1qtx1i5izr7].[sum:customer_sales:qk]' />
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[sum:customer_sales:qk]' scope='cols' value='Customer Sales' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='font-weight' data-class='total' value='normal' />
+            <format attr='font-weight' data-class='subtotal' value='normal' />
+          </style-rule>
+          <style-rule element='field-labels'>
+            <format attr='background-color' value='#00000000' />
+            <format attr='font-weight' value='normal' />
+            <format attr='font-size' value='10' />
+          </style-rule>
+          <style-rule element='field-labels-decoration'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='field-labels-spanner'>
+            <format attr='font-weight' scope='rows' value='normal' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_name:nk]' value='true' />
+            <format attr='font-weight' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_name:nk]' value='normal' />
+            <format attr='font-size' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_name:nk]' value='9' />
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-pattern-only' value='solid' />
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='font-weight' value='bold' />
+          </style-rule>
+          <_.fcp.IndividualControlFormatting.true...style-rule element='legend'>
+            <_.fcp.IndividualControlFormatting.true...format attr='font-weight' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='normal' />
+          </_.fcp.IndividualControlFormatting.true...style-rule>
+          <_.fcp.IndividualControlFormatting.true...style-rule element='legend-title'>
+            <_.fcp.IndividualControlFormatting.true...format attr='text-align' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='auto' />
+            <_.fcp.IndividualControlFormatting.true...format attr='font-weight' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='bold' />
+            <_.fcp.IndividualControlFormatting.true...format attr='font-size' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='14' />
+            <_.fcp.IndividualControlFormatting.true...format attr='color' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='#000000' />
+            <_.fcp.IndividualControlFormatting.true...format attr='font-family' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' id='legend-color' value='Tableau Medium' />
+          </_.fcp.IndividualControlFormatting.true...style-rule>
+          <style-rule element='legend-title-text'>
+            <format attr='color' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' value='Customer ID'>
+              <formatted-text>
+                <run fontalignment='2' fontsize='14'>Customer ID</run>
+              </formatted-text>
+            </format>
+          </style-rule>
+          <style-rule element='axis-title'>
+            <format attr='font-size' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[sum:customer_sales:qk]' value='12' />
+            <format attr='font-weight' field='[federated.0osjgbk1y186if10e1qtx1i5izr7].[sum:customer_sales:qk]' value='normal' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_id:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.5272375345230103' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0osjgbk1y186if10e1qtx1i5izr7].[none:customer_name:nk]</rows>
+        <cols>[federated.0osjgbk1y186if10e1qtx1i5izr7].[sum:customer_sales:qk]</cols>
+      </table>
+      <simple-id uuid='{F19025BD-723D-4B93-A0DD-35B5C981144E}' />
+    </worksheet>
+    <worksheet name='top_prod_num'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Eras Bold ITC' fontsize='12'>By Unit</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Top Product' name='federated.1mi8jbz12p34al1811hg10a9o26x' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1mi8jbz12p34al1811hg10a9o26x'>
+            <column-instance column='[product_name (Custom SQL Query1)]' derivation='None' name='[none:product_name (Custom SQL Query1):nk]' pivot='key' type='nominal' />
+            <column caption='Num Units Sold_' datatype='integer' name='[num_units_sold (Custom SQL Query1)]' role='measure' type='quantitative' />
+            <column caption='Product Name_' datatype='string' name='[product_name (Custom SQL Query1)]' role='dimension' type='nominal' />
+            <column caption='Product Sales ($)_' datatype='real' name='[product_sales (Custom SQL Query1)]' role='measure' type='quantitative' />
+            <column-instance column='[num_units_sold (Custom SQL Query1)]' derivation='Sum' name='[sum:num_units_sold (Custom SQL Query1):qk]' pivot='key' type='quantitative' />
+            <column-instance column='[product_sales (Custom SQL Query1)]' derivation='Sum' name='[sum:product_sales (Custom SQL Query1):qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' scope='cols' value='Units Sold' />
+            <format attr='tick-color' scope='cols' value='#f5eddc' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='font-size' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' value='10' />
+            <format attr='font-family' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' value='Copperplate Gothic Bold' />
+            <format attr='color' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' value='#000000' />
+            <format attr='text-format' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' value='n&quot;Units: &quot;#,##0;-&quot;Units: &quot;#,##0' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='background-color' value='#e6e6e6' />
+            <format attr='band-color' scope='rows' value='#d4d4d4' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' value='#00000000' />
+            <format attr='band-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#386fa7' />
+            <format attr='band-size' scope='cols' value='0' />
+            <format attr='band-size' scope='rows' value='1' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-color' scope='cols' value='#898989' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <tooltip column='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales (Custom SQL Query1):qk]' />
+              <text column='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#f1ce63' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name (Custom SQL Query1):nk]</rows>
+        <cols>[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold (Custom SQL Query1):qk]</cols>
+      </table>
+      <simple-id uuid='{AC622F53-117D-4F58-839A-469F6A63828E}' />
+    </worksheet>
+    <worksheet name='top_prod_sales'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontname='Eras Bold ITC' fontsize='12'>By Sales</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Top Product' name='federated.1mi8jbz12p34al1811hg10a9o26x' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1mi8jbz12p34al1811hg10a9o26x'>
+            <column-instance column='[product_name]' derivation='None' name='[none:product_name:nk]' pivot='key' type='nominal' />
+            <column caption='Num Units Sold' datatype='integer' name='[num_units_sold]' role='measure' type='quantitative' />
+            <column caption='Product Name' datatype='string' name='[product_name]' role='dimension' type='nominal' />
+            <column caption='Product Sales ($)' datatype='real' name='[product_sales]' role='measure' type='quantitative' />
+            <column-instance column='[num_units_sold]' derivation='Sum' name='[sum:num_units_sold:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[product_sales]' derivation='Sum' name='[sum:product_sales:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <computed-sort column='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' direction='DESC' using='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' />
+          <filter class='quantitative' column='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold:qk]' included-values='in-range'>
+            <min>1</min>
+            <max>11</max>
+          </filter>
+          <slices>
+            <column>[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' scope='cols' value='Product Sales ($)' />
+            <format attr='tick-color' scope='cols' value='#f5eddc' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='C1033%' />
+            <format attr='font-size' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='10' />
+            <format attr='font-family' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='Copperplate Gothic Bold' />
+            <format attr='color' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='#000000' />
+            <format attr='font-weight' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='normal' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='160' />
+            <format attr='background-color' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='#e6e6e6' />
+            <format attr='background-color' value='#e6e6e6' />
+            <format attr='band-color' scope='rows' value='#d4d4d4' />
+            <format attr='background-color' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='#e6e6e6' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='left' />
+            <format attr='wrap' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='on' />
+            <format attr='vertical-align' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='auto' />
+            <format attr='text-orientation' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]' value='0' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' value='#00000000' />
+            <format attr='band-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#386fa7' />
+            <format attr='band-size' scope='cols' value='0' />
+            <format attr='band-size' scope='rows' value='1' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-color' scope='cols' value='#898989' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='axis-title'>
+            <format attr='font-weight' field='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' value='normal' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <tooltip column='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:num_units_sold:qk]' />
+              <text column='[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#f1ce63' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1mi8jbz12p34al1811hg10a9o26x].[none:product_name:nk]</rows>
+        <cols>[federated.1mi8jbz12p34al1811hg10a9o26x].[sum:product_sales:qk]</cols>
+      </table>
+      <simple-id uuid='{D4E5C35C-9D1E-4005-8F00-C1F37A627CD2}' />
+    </worksheet>
+    <worksheet name='tot_rev'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontalignment='1' fontname='Eras Bold ITC' fontsize='12'>Sales Revenue by Category</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Tot Sales' name='federated.1ryau9m1fx6v0r10ixmr40yib9t8' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ryau9m1fx6v0r10ixmr40yib9t8'>
+            <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+            <column-instance column='[category]' derivation='None' name='[none:category:nk]' pivot='key' type='nominal' />
+            <column caption='Percentage' datatype='real' name='[percent]' role='measure' type='quantitative' />
+            <column-instance column='[percent]' derivation='Sum' name='[sum:percent:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[tot_cat_sales]' derivation='Sum' name='[sum:tot_cat_sales:qk]' pivot='key' type='quantitative' />
+            <column caption='Total Category Sales' datatype='real' name='[tot_cat_sales]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[sum:percent:qk]' value='p0.00%' />
+            <format attr='font-weight' data-class='total' value='bold' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='legend-title'>
+            <format attr='text-align' value='left' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <_.fcp.VizExtensions.false...mark class='Automatic' />
+            <_.fcp.VizExtensions.true...mark class='VizExtension' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <_.fcp.VizExtensions.true...add-in add-in-id='com.ladataviz.extension.donut' extension-url='https://partner-extensions.tableauusercontent.com/viz/ladataviz/all/donut.html' extension-version='1.0.0' instance-id='AB50CEC29C06435A9FCC30D3F76B3DF7'>
+              <instance-settings>
+                <setting key='vizConfig' value='{&quot;donutStrokeColorAuto&quot;:false,&quot;donutStrokeColor&quot;:&quot;#202020&quot;,&quot;donutStrokeWidth&quot;:[1],&quot;donutOpacity&quot;:[100],&quot;featuresRotation&quot;:[0],&quot;innerRadius&quot;:[41],&quot;outerRadius&quot;:[85],&quot;donutPadding&quot;:[2],&quot;displayLabelText&quot;:true,&quot;displayLabelSize&quot;:true,&quot;displayColorMatch&quot;:true,&quot;labelRadius&quot;:[-35],&quot;labelOrientation&quot;:&quot;perpendicular&quot;,&quot;labelFormat&quot;:&quot;multiline&quot;,&quot;labelAlignment&quot;:&quot;out&quot;,&quot;displayLabelDetailText&quot;:true,&quot;displayLabelDetailSize&quot;:false,&quot;labelDetailMatchColor&quot;:false,&quot;labelDetailRadius&quot;:[0],&quot;labelDetailOrientation&quot;:&quot;parallel&quot;,&quot;labelDetailPosition&quot;:&quot;external&quot;,&quot;labelDetailFormat&quot;:&quot;inLine&quot;,&quot;labelDetailAlignment&quot;:&quot;out&quot;,&quot;kpiAggregation&quot;:&quot;sum&quot;,&quot;kpiFontSize&quot;:[24],&quot;kpiFontColor&quot;:&quot;#000000&quot;,&quot;kpiFontWeight&quot;:&quot;bold&quot;,&quot;kpiDecimals&quot;:[0],&quot;kpiPrefix&quot;:&quot;&quot;,&quot;kpiSuffix&quot;:&quot;&quot;,&quot;kpiYPosition&quot;:[5],&quot;kpiLocale&quot;:&quot;auto&quot;,&quot;kpiStyle&quot;:&quot;number&quot;,&quot;kpiNotation&quot;:&quot;standard&quot;,&quot;kpiCompactDisplay&quot;:&quot;short&quot;,&quot;displayTextAbove&quot;:true,&quot;textAbove&quot;:&quot;Total Sales Revenue&quot;,&quot;textAboveFontSize&quot;:[12],&quot;textAboveFontColor&quot;:&quot;#000000&quot;,&quot;textAboveFontWeight&quot;:&quot;bold&quot;,&quot;textAboveYPosition&quot;:[-15],&quot;displayTextBelow&quot;:false,&quot;textBelow&quot;:&quot;insert BELOW text here&quot;,&quot;textBelowFontSize&quot;:[16],&quot;textBelowFontColor&quot;:&quot;#000000&quot;,&quot;textBelowFontWeight&quot;:&quot;normal&quot;,&quot;textBelowYPosition&quot;:[35],&quot;wrapTextSize&quot;:[40],&quot;wrapDetailTextSize&quot;:[20],&quot;minPercentageForLabel&quot;:[0],&quot;minPercentageForDetailLabel&quot;:[2],&quot;backgroundColor&quot;:&quot;#386fa7&quot;,&quot;fitWidth&quot;:true,&quot;fitHeight&quot;:true,&quot;fixedWidth&quot;:[1520],&quot;fixedHeight&quot;:[770],&quot;colorRole&quot;:&quot;dimension&quot;,&quot;colorName&quot;:&quot;category&quot;,&quot;fillColor&quot;:&quot;#4E79A7&quot;,&quot;discreteOption&quot;:&quot;custom&quot;,&quot;continuousPaletteType&quot;:null,&quot;continuousSeqColorScheme&quot;:&quot;d3.interpolateBlues&quot;,&quot;continuousDivColorScheme&quot;:&quot;d3.interpolateRdBu&quot;,&quot;startSeqColor&quot;:&quot;#f7f7f7&quot;,&quot;endSeqColor&quot;:&quot;#0571b0&quot;,&quot;startDivColor&quot;:&quot;#ca0020&quot;,&quot;middleDivColor&quot;:&quot;#f7f7f7&quot;,&quot;mediumValue&quot;:0,&quot;endDivColor&quot;:&quot;#0571b0&quot;,&quot;discreteColorPalette&quot;:[&quot;#8dd3c7&quot;,&quot;#ffffb3&quot;,&quot;#bebada&quot;,&quot;#fb8072&quot;,&quot;#80b1d3&quot;,&quot;#fdb462&quot;,&quot;#b3de69&quot;,&quot;#fccde5&quot;,&quot;#d9d9d9&quot;,&quot;#bc80bd&quot;,&quot;#ccebc5&quot;,&quot;#ffed6f&quot;],&quot;uniqueColors&quot;:[&quot;Furniture&quot;,&quot;Office Supplies&quot;,&quot;Technology&quot;,&quot;Null&quot;],&quot;displayLegend&quot;:false,&quot;legendBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;legendFontColor&quot;:&quot;#313131&quot;,&quot;legendFrameColor&quot;:&quot;#f3f3f3&quot;,&quot;labelWeight&quot;:&quot;bold&quot;,&quot;labelFontSize&quot;:[10],&quot;labelFontColor&quot;:&quot;#000000&quot;,&quot;labelStrokeWidth&quot;:[0],&quot;labelStrokeColor&quot;:&quot;#ffffff&quot;,&quot;labelMatchColor&quot;:false,&quot;labelLocale&quot;:&quot;auto&quot;,&quot;labelStyle&quot;:&quot;percent&quot;,&quot;labelNotation&quot;:&quot;standard&quot;,&quot;labelCompactDisplay&quot;:&quot;short&quot;,&quot;labelDecimals&quot;:[2],&quot;labelPrefix&quot;:&quot;&quot;,&quot;labelSuffix&quot;:&quot;&quot;,&quot;labelPixelOrPoint&quot;:&quot;pt&quot;}' />
+                <setting key='vizLegend' value='{&quot;left&quot;:356,&quot;top&quot;:46,&quot;width&quot;:112,&quot;height&quot;:107}' />
+              </instance-settings>
+              <type-settings>
+                <worksheet />
+              </type-settings>
+            </_.fcp.VizExtensions.true...add-in>
+            <encodings>
+              <_.fcp.VizExtensions.false...lod _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{F07BF8C7-22E4-483D-9DC0-28974BB6AD1A}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[none:category:nk]' />
+              <_.fcp.VizExtensions.true...custom _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{F07BF8C7-22E4-483D-9DC0-28974BB6AD1A}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[none:category:nk]' custom-type-name='sections' />
+              <_.fcp.VizExtensions.false...lod _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{804CF570-D192-4251-82DF-8E88C3D1D358}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[sum:percent:qk]' />
+              <_.fcp.VizExtensions.true...custom _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{804CF570-D192-4251-82DF-8E88C3D1D358}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[sum:percent:qk]' custom-type-name='values' />
+              <_.fcp.VizExtensions.false...lod _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{F77B2307-BD06-49FD-854B-0A531C4554CF}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[none:category:nk]' />
+              <_.fcp.VizExtensions.true...custom _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{F77B2307-BD06-49FD-854B-0A531C4554CF}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[none:category:nk]' custom-type-name='color' />
+              <_.fcp.VizExtensions.false...lod _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{155EDC74-CD31-4EE8-A115-359DDA843A8F}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[sum:tot_cat_sales:qk]' />
+              <_.fcp.VizExtensions.true...custom _.fcp.VizExtensionsDupEncodingUUID.true...encoding-id='{155EDC74-CD31-4EE8-A115-359DDA843A8F}' column='[federated.1ryau9m1fx6v0r10ixmr40yib9t8].[sum:tot_cat_sales:qk]' custom-type-name='kpi' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='3.7458562850952148' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{AC46B896-542E-4D1E-AB79-1BB2665E599A}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style />
+      <size maxheight='1000' maxwidth='1000' minheight='1000' minwidth='1000' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98400' id='25' param='horz' type-v2='layout-flow' w='98400' x='800' y='800'>
+            <zone h='98400' id='23' type-v2='layout-basic' w='98400' x='800' y='800'>
+              <zone friendly-name='Product' h='39000' id='11' param='vert' type-v2='layout-flow' w='65901' x='33299' y='7200'>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='13' is-fixed='true' type-v2='text' w='65901' x='33299' y='7200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Top Product Sold by Sales ($)</run>
+                    <run>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-left' value='16' />
+                    <format attr='padding' value='2' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone h='16300' id='9' name='top_prod_sales' show-title='false' w='65901' x='33299' y='10400'>
+                  <layout-cache fixed-size-h='155' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='12' is-fixed='true' type-v2='text' w='65901' x='33299' y='26700'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Top Product Sold by Units</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='0' />
+                    <format attr='margin-left' value='16' />
+                    <format attr='padding' value='2' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone h='16300' id='10' name='top_prod_num' show-title='false' w='65901' x='33299' y='29900'>
+                  <layout-cache fixed-size-h='155' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone forceUpdate='true' h='6400' id='8' type-v2='text' w='98400' x='800' y='800'>
+                <formatted-text>
+                  <run bold='true' fontalignment='1' fontcolor='#000000' fontname='Eras Bold ITC' fontsize='16'>Superstore Sales 2015-2018</run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='1' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-top' value='0' />
+                  <format attr='margin-right' value='0' />
+                  <format attr='margin-left' value='0' />
+                  <format attr='background-color' value='#b4b4b4ce' />
+                </zone-style>
+              </zone>
+              <zone friendly-name='Monthly Sales' h='53000' id='16' param='vert' type-v2='layout-flow' w='98400' x='800' y='46200'>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='18' is-fixed='true' type-v2='text' w='98400' x='800' y='46200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Monthly US Regional Sales</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-left' value='16' />
+                    <format attr='padding' value='2' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone h='44600' id='5' name='month_sales' show-title='false' w='98400' x='800' y='49400'>
+                  <layout-cache minheight='457' type-h='scalable' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='44' h='5200' id='26' is-fixed='true' name='month_sales' pane-specification-id='1' param='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' type-v2='color' w='98400' x='800' y='94000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone friendly-name='Tot Rev' h='39000' id='20' param='vert' type-v2='layout-flow' w='32499' x='800' y='7200'>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='21' is-fixed='true' type-v2='text' w='32499' x='800' y='7200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Sales by Category</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='16' />
+                    <format attr='padding' value='2' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone h='31600' id='19' name='tot_rev' show-title='false' w='32499' x='800' y='10400'>
+                  <layout-cache cell-count-h='1' type-h='cell' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='34' h='4200' id='22' is-fixed='true' type-v2='empty' w='32499' x='800' y='42000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='0' />
+            <format attr='padding' value='8' />
+            <format attr='background-color' value='#386fa7' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1350' minheight='1350' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='36' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98400' id='35' param='vert' type-v2='layout-flow' w='98400' x='800' y='800'>
+                <zone forceUpdate='true' h='6400' id='8' type-v2='text' w='98400' x='800' y='800'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1' fontcolor='#000000' fontname='Eras Bold ITC' fontsize='16'>Superstore Sales 2015-2018</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='21' type-v2='text' w='32499' x='800' y='7200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Sales by Category</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='13' type-v2='text' w='65901' x='33299' y='7200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Top Product Sold by Sales ($)</run>
+                    <run>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='31600' id='19' is-fixed='true' name='tot_rev' show-title='false' w='32499' x='800' y='10400'>
+                  <layout-cache cell-count-h='1' type-h='cell' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='155' h='16300' id='9' is-fixed='true' name='top_prod_sales' show-title='false' w='65901' x='33299' y='10400'>
+                  <layout-cache fixed-size-h='155' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='12' type-v2='text' w='65901' x='33299' y='26700'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Top Product Sold by Units</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='155' h='16300' id='10' is-fixed='true' name='top_prod_num' show-title='false' w='65901' x='33299' y='29900'>
+                  <layout-cache fixed-size-h='155' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='32' forceUpdate='true' h='3200' id='18' type-v2='text' w='98400' x='800' y='46200'>
+                  <formatted-text>
+                    <run fontcolor='#000000' fontname='Eras Bold ITC' fontsize='12'>Monthly US Regional Sales</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='1' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                    <format attr='background-color' value='#b4b4b4ce' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='44600' id='5' is-fixed='true' name='month_sales' show-title='false' w='98400' x='800' y='49400'>
+                  <layout-cache minheight='457' type-h='scalable' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='44' h='5200' id='26' name='month_sales' pane-specification-id='1' param='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' type-v2='color' w='98400' x='800' y='94000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='0' />
+                <format attr='padding' value='8' />
+                <format attr='background-color' value='#386fa7' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{16464AD3-2386-4C58-BAC3-A547AEDC7018}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='93'>
+    <window class='worksheet' name='tot_rev'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+        <default-map-tool-selection tool='2' />
+      </viewpoint>
+      <simple-id uuid='{83D03DEA-4643-403A-B50B-9FAF1615DCE4}' />
+    </window>
+    <window class='worksheet' name='top_cust'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <simple-id uuid='{9792CAB2-914B-4692-A94B-4202EB028064}' />
+    </window>
+    <window class='worksheet' name='month_sales'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.0a5oze51c5iscp18t88kp15tqdt3].[sum:monthly_change_in_sales:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{D3ADD3F8-4CB0-4365-AAB0-91FBCAFAA891}' />
+    </window>
+    <window class='dashboard' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='month_sales'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='top_prod_num'>
+          <default-map-tool-selection tool='16' />
+        </viewpoint>
+        <viewpoint name='top_prod_sales'>
+          <default-map-tool-selection tool='2' />
+        </viewpoint>
+        <viewpoint name='tot_rev'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{6AA96FD5-0D7A-43C3-8ED2-7C0B56E0A272}' />
+    </window>
+    <window class='worksheet' name='top_prod_sales'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{A0B0BEC7-CF45-4671-9AE9-1FF9C1A5CF06}' />
+    </window>
+    <window class='worksheet' maximized='true' name='top_prod_num'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{E907688F-C89C-41A6-85CD-8DC28F8B98E3}' />
+    </window>
+  </windows>
+  <_.fcp.VizExtensions.true...referenced-extensions>
+    <_.fcp.VizExtensions.true...referenced-extension>
+      <manifest manifest-version='0.1'>
+        <worksheet-extension extension-version='1.0.0' id='com.ladataviz.extension.donut'>
+          <default-locale>en_US</default-locale>
+          <name resource-id='name' />
+          <description>Donut</description>
+          <author email='tristan@ladataviz.com' name='LaDataViz' organization='LaDataViz' website='https://www.ladataviz.com' />
+          <min-api-version>1.11</min-api-version>
+          <source-location>
+            <url>https://partner-extensions.tableauusercontent.com/viz/ladataviz/all/donut.html</url>
+          </source-location>
+          <icon />
+          <context-menu>
+            <configure-context-menu-item />
+          </context-menu>
+          <encoding id='sections'>
+            <display-name>Sections</display-name>
+            <role-spec>
+              <role-type>discrete-dimension</role-type>
+            </role-spec>
+            <fields max-count='1' />
+            <encoding-icon token='level' />
+          </encoding>
+          <encoding id='values'>
+            <display-name>Angle</display-name>
+            <role-spec>
+              <role-type>continuous-measure</role-type>
+            </role-spec>
+            <fields max-count='1' />
+            <encoding-icon token='size' />
+          </encoding>
+          <encoding id='color'>
+            <display-name>Color</display-name>
+            <role-spec>
+              <role-type>continuous-measure</role-type>
+              <role-type>discrete-dimension</role-type>
+            </role-spec>
+            <fields max-count='1' />
+            <encoding-icon token='color' />
+            <tooltip resource-id='tooltip-color'>Add a color to the radar</tooltip>
+          </encoding>
+          <encoding id='kpi'>
+            <display-name>KPI</display-name>
+            <role-spec>
+              <role-type>continuous-measure</role-type>
+              <role-type>discrete-measure</role-type>
+            </role-spec>
+            <fields max-count='1' />
+            <encoding-icon token='favorite' />
+          </encoding>
+        </worksheet-extension>
+        <resources>
+          <resource id='name'>
+            <text locale='en_US'>Donut</text>
+          </resource>
+        </resources>
+      </manifest>
+      <referenced-views>
+        <referenced-view instances='1' viewId='tot_rev' />
+      </referenced-views>
+    </_.fcp.VizExtensions.true...referenced-extension>
+  </_.fcp.VizExtensions.true...referenced-extensions>
+</workbook>

@@ -22,6 +22,8 @@ Once the raw data was loaded into Postgres, it was divided into seperate tables 
 
 The respective SQL script is [03_question_queries](./scripts/03_question_queries.sql).
 
+The final dashboard on Tableau Public [here](https://public.tableau.com/views/SalesModelingProject/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
+
 ### What is the overall sales revenue from the entire dataset?
 
 ```sql
@@ -84,10 +86,9 @@ ORDER BY num_units_sold DESC, product_sales DESC
 LIMIT 5
 ```
 
-**Output:**
+**Visual:**
 
-![SQL Output](images/q4a.png)
-![SQL Output](images/q4b.png)
+![Bar charts with top 5 products by unit/sales](images/q4-chart.png)
 
 ### What is the average shipping time by ship mode?
 
